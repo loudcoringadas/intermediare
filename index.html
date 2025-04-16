@@ -4,21 +4,148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>S333 HUBS | Acesso Premium</title>
-  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Fonte e ícone -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1f1f1f);
+      color: #f6f6f6;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .circle-container {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) translate(-50%, -50%); }
+      50% { transform: scale(1.2) translate(-50%, -50%); }
+      100% { transform: scale(1) translate(-50%, -50%); }
+    }
+
+    .container-main-key {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .key-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px 25px;
+      font-size: 18px;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .key-container:hover {
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+    }
+
+    .key-container i {
+      color: #ccc;
+      transition: color 0.2s;
+    }
+
+    .key-container i.copied {
+      color: #00c853;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    #alert-copy {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #00c853;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-weight: 600;
+    }
+
+    #alert-copy.show {
+      opacity: 1;
+    }
+
+    @media(max-width: 500px) {
+      .container-main-key {
+        width: 90%;
+        padding: 30px 20px;
+      }
+
+      .key-container {
+        font-size: 16px;
+      }
+
+      .logo {
+        width: 150px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  
+
   <div class="circle-container"></div>
-  
+
   <div class="container-main-key">
     <main>
       <img src="/Main logo.png" alt="S333 HUBS Logo" class="logo"/>
-      <h1>Aqui está sua key</h1>
-      <div class="key-container">
-        <i id="icon-copy" class="fa-solid fa-copy"></i>
-        <span id="your-key">xxxx-xxx</span>
+      <h1>Sua key exclusiva:</h1>
+      <div class="key-container" id="copy-area" title="Clique para copiar">
+        <i id="icon-copy" class="fa-solid fa-copy" aria-hidden="true"></i>
+        <span id="your-key">Carregando...</span>
       </div>
     </main>
     <footer>
@@ -26,60 +153,51 @@
     </footer>
   </div>
 
+  <div id="alert-copy">Key copiada!</div>
+
   <script>
-  const ref = document.referrer;
-  const expectedRef = "https://linkvertise.com/1338065/s333-macro-for-asura?o=sharing";
-  if (!ref || !ref.startsWith(expectedRef)) {
-    window.location.href = "/";
-  }
-</script>
+    // Verificação de origem
+    const ref = document.referrer;
+    const allowedRefs = [
+      "https://linkvertise.com/1338065/s333-macro-for-asura?o=sharing",
+      "https://link-center.net/1338065/s333-macro-for-asura"
+    ];
 
-<script>
-    const containerCircle = document.querySelector(".circle-container")
-    const containerMain = document.querySelector(".container-main-key")
-    const yourKey = document.getElementById("your-key")
-    const iconCopy = document.getElementById("icon-copy")
-    const alertCopy = document.getElementById("alert-copy")
-    
-    function copiarTexto(texto) {
-      navigator.clipboard.writeText(texto)
-      .then(() => {
-        // Mostra o alerta de "copiado"
-        alertCopy.classList.add("show")
-        setTimeout(() => {
-          alertCopy.classList.remove("show")
-        }, 2000)
-      })
-      .catch((err) => {
-        console.error("Erro ao copiar:", err)
-      })
+    const isValidRef = allowedRefs.some(url => ref && ref.startsWith(url));
+    if (!isValidRef) {
+      window.location.href = "/";
     }
-    
+
+    // Elementos
+    const containerCircle = document.querySelector(".circle-container");
+    const containerMain = document.querySelector(".container-main-key");
+    const yourKey = document.getElementById("your-key");
+    const iconCopy = document.getElementById("icon-copy");
+    const copyArea = document.getElementById("copy-area");
+    const alertCopy = document.getElementById("alert-copy");
+
+    // Buscar a key
     fetch("https://script.google.com/macros/s/AKfycbwpsWfPIwmQYaRckYpZtAdzP9z19OgiBO8JC_EPMPbycUyNN69I1z6LMtgfFUObc6q9IQ/exec?referer=linkvertise")
-    .then(response => response.text())
-    .then(data => {
-      containerCircle.style.display = "none"
-      containerMain.style.display = "block"
-      yourKey.textContent = data
-    })
+      .then(response => response.text())
+      .then(data => {
+        containerCircle.style.display = "none";
+        containerMain.style.display = "flex";
+        yourKey.textContent = data.trim();
+      });
 
-    iconCopy.addEventListener("click", () => {
-      iconCopy.style.color = "#F6F6F6"
-      setTimeout(() => { iconCopy.style.color = "#CCCCCC" }, 200)
-      copiarTexto(yourKey.textContent)
-    })
+    // Copiar key
+    copyArea.addEventListener("click", () => {
+      navigator.clipboard.writeText(yourKey.textContent).then(() => {
+        iconCopy.classList.add("copied");
+        alertCopy.classList.add("show");
+
+        setTimeout(() => {
+          iconCopy.classList.remove("copied");
+          alertCopy.classList.remove("show");
+        }, 2000);
+      });
+    });
   </script>
-
-<script>
-  const ref = document.referrer;
-  const allowedRef1 = "https://link-center.net/1338065/s333-macro-for-asur";
-  const allowedRef2 = "https://link-center.net/1338065/s333-macro-for-asura";
-
-  if (!ref || (!ref.startsWith(allowedRef1) && !ref.startsWith(allowedRef2))) {
-    window.location.href = "/";
-  }
-</script>
-
 
 </body>
 </html>
