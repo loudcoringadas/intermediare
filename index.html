@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>S333 HUBS | Acesso Premium</title>
 
-  <!-- Fonte e ícone -->
+  <!-- Fontes e ícones -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -156,7 +156,6 @@
   <div id="alert-copy">Key copiada!</div>
 
   <script>
-    // Verificação de origem (apenas generatorkeyt.vercel.app)
     const ref = document.referrer;
     const allowedRef = "https://generatorkeyt.vercel.app";
 
@@ -164,7 +163,6 @@
       window.location.href = "/";
     }
 
-    // Elementos
     const containerCircle = document.querySelector(".circle-container");
     const containerMain = document.querySelector(".container-main-key");
     const yourKey = document.getElementById("your-key");
@@ -172,8 +170,7 @@
     const copyArea = document.getElementById("copy-area");
     const alertCopy = document.getElementById("alert-copy");
 
-    // Buscar a key
-    fetch("https://script.google.com/macros/s/AKfycbwpsWfPIwmQYaRckYpZtAdzP9z19OgiBO8JC_EPMPbycUyNN69I1z6LMtgfFUObc6q9IQ/exec?referer=linkvertise")
+    fetch("https://script.google.com/macros/s/AKfycbwpsWfPIwmQYaRckYpZtAdzP9z19OgiBO8JC_EPMPbycUyNN69I1z6LMtgfFUObc6q9IQ/exec?referer=generatorkeyt")
       .then(response => response.text())
       .then(data => {
         containerCircle.style.display = "none";
@@ -181,12 +178,10 @@
         yourKey.textContent = data.trim();
       });
 
-    // Copiar key
     copyArea.addEventListener("click", () => {
       navigator.clipboard.writeText(yourKey.textContent).then(() => {
         iconCopy.classList.add("copied");
         alertCopy.classList.add("show");
-
         setTimeout(() => {
           iconCopy.classList.remove("copied");
           alertCopy.classList.remove("show");
