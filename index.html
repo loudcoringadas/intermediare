@@ -4,23 +4,12 @@
   <meta charset="UTF-8" />
   <title>Redirecionando...</title>
   <script>
-    // Token "camuflado" (divide ele em partes pra dificultar acesso por inspeção rápida)
-    const parte1 = "Lp$@TYxNvF^CJX3MqWzR!";
-    const parte2 = "9odUy#K2&XpLgMCVtJZq*";
-    const parte3 = "NbEyW$6FXr%PL!T^cKMZo";
-    const parte4 = "XW@9BpU7Y#F!MXrCJ^A2v";
-    const parte5 = "LTZowE!pNcUyKX$FbJgC@3";
-
-    const token = parte1 + parte2 + parte3 + parte4 + parte5;
-
-    // Prova que a pessoa passou pelo redirecionador
+    const token = "liberado123"; // Token simples
     sessionStorage.setItem("passouRedirecionador", "sim");
-
-    // Redireciona com o token como parâmetro
-    window.location.href = `https://lokcis.vercel.app/send-key.html?auth=${encodeURIComponent(token)}`;
+    window.location.href = `https://lokcis.vercel.app/send-key.html?auth=${token}`;
   </script>
 </head>
 <body>
-  <p>Redirecionando para o site...</p>
+  <p style="color:white; text-align:center;">Redirecionando para o site...</p>
 </body>
 </html>
