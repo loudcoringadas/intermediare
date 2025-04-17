@@ -1,17 +1,17 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Redirecionando...</title>
   <script>
-    (function() {
-      const token = "abc"; // Token simples
-      sessionStorage.setItem("authToken", token); // CORRIGIDO
-      window.location.href = `https://lokcis.vercel.app/send-key.html?auth=${token}`;
-    })();
+    // Gerar um token simples (você pode melhorar com backend depois)
+    const token = "VaisefoderCriolo"; // ← deve ser o mesmo verificado no send-key.html
+    // Salvar como prova de passagem (opcional)
+    sessionStorage.setItem("passouRedirecionador", "sim");
+    // Redirecionar com token
+    window.location.href = `https://lokcis.vercel.app/send-key.html?token=${token}`;
   </script>
 </head>
-<body style="background-color: #000; color: white; text-align: center; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+<body>
   <p>Redirecionando para o site...</p>
 </body>
 </html>
