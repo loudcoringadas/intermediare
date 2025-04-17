@@ -4,29 +4,20 @@
   <meta charset="UTF-8" />
   <title>Redirecionando...</title>
   <script>
-    // Gerar um token simples (você pode melhorar com backend depois)
-    const token = "<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Redirecionando...</title>
-  <script>
-    // Gerar um token simples (você pode melhorar com backend depois)
-    const token = "Lp$@TYxNvF^CJX3MqWzR!9odUy#K2&XpLgMCVtJZq*NbEyW$6FXr%PL!T^cKMZoX"; // ← deve ser o mesmo verificado no send-key.html
-    // Salvar como prova de passagem (opcional)
+    // Token "camuflado" (divide ele em partes pra dificultar acesso por inspeção rápida)
+    const parte1 = "Lp$@TYxNvF^CJX3MqWzR!";
+    const parte2 = "9odUy#K2&XpLgMCVtJZq*";
+    const parte3 = "NbEyW$6FXr%PL!T^cKMZo";
+    const parte4 = "XW@9BpU7Y#F!MXrCJ^A2v";
+    const parte5 = "LTZowE!pNcUyKX$FbJgC@3";
+
+    const token = parte1 + parte2 + parte3 + parte4 + parte5;
+
+    // Prova que a pessoa passou pelo redirecionador
     sessionStorage.setItem("passouRedirecionador", "sim");
-    // Redirecionar com token
-    window.location.href = `https://lokcis.vercel.app/send-key.html?token=${token}`;
-  </script>
-</head>
-<body>
-  <p>Redirecionando para o site...</p>
-</body>
-</html>"; // ← deve ser o mesmo verificado no send-key.html
-    // Salvar como prova de passagem (opcional)
-    sessionStorage.setItem("passouRedirecionador", "sim");
-    // Redirecionar com token
-    window.location.href = `https://lokcis.vercel.app/send-key.html?token=${token}`;
+
+    // Redireciona com o token como parâmetro
+    window.location.href = `https://lokcis.vercel.app/send-key.html?auth=${encodeURIComponent(token)}`;
   </script>
 </head>
 <body>
